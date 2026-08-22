@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>چت با {{ other_user.username }} | Mini Mail System</title>
+    <link rel="stylesheet" href="{% static 'my_app/style.css' %}">
+</head>
+<body>
+    <div class="page">
+        <header class="topbar">
+            <span><a href="{% url 'search' %}">&rarr; بازگشت</a> — چت با <strong>{{ other_user.username }}</strong></span>
+            <form method="post" action="{% url 'logout' %}" class="inline-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-ghost">خروج</button>
+            </form>
+        </header>
+
+        <main class="card">
+            <h1>{{ other_user.username }}</h1>
+
+            <ul class="message-list">
+                {% for message in messages %}
+                    <li class="message-item {% if message.sender == user %}mine{% endif %}">
+                        <p>{{ message.text }}</p>
+                        <time>{{ message.sender.username }} — {{ message.created_at }}</time>
+                    </li>
+                {% empty %}
+                    <li class="empty-state">هنوز پیامی رد و بدل نشده.</li>
+                {% endfor %}
+            </ul>
+
+            <form method="post" class="compose-form">
+                {% csrf_token %}
+                <textarea name="text" rows="3" placeholder="پیامت رو بنویس..."></textarea>
+                <button type="submit" class="btn">ارسال</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
