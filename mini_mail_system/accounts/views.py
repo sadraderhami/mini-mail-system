@@ -1,12 +1,6 @@
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
-
-
-@login_required
-def home(request):
-    return render(request, 'accounts/home.html')
 
 
 def signup(request):
@@ -15,7 +9,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('inbox')
     else:
         form = UserCreationForm()
     return render(request, 'accounts/signup.html', {'form': form})

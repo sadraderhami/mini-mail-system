@@ -1,18 +1,22 @@
 <!-- templates/base.html -->
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}MiniMail{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'accounts/style.css' %}">
 </head>
 <body>
     {% include "navbar.html" %}
 
     <main>
-        <div class="card">
+        <!-- child templates can override "card_class" below to widen the card (see inbox templates) -->
+        <div class="card {% block card_class %}{% endblock %}">
             {% block content %}{% endblock %}
         </div>
     </main>

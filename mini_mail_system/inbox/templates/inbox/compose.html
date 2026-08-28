@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% translate "Compose" %} {% endblock %}
+{% block content %}
+<h1>{% translate "Compose" %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% translate "Send" %}</button>
+</form>
+{% endblock %}

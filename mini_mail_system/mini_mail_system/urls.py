@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from accounts import views
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Provides the 'set_language' view the navbar's language switcher posts to.
+    path('i18n/', include('django.conf.urls.i18n')),
     path('accounts/', include('accounts.urls')),
-    path('', views.home, name='home'),
+    path('inbox/', include('inbox.urls')),
+    path('', RedirectView.as_view(pattern_name='inbox', permanent=False)),
 ]

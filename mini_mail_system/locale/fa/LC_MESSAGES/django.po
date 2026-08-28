@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mini-mail-system\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Inbox"
+msgstr "صندوق ورودی"
+
+msgid "Sent"
+msgstr "ارسال‌شده"
+
+msgid "Compose"
+msgstr "نوشتن پیام"
+
+msgid "Logout"
+msgstr "خروج"
+
+msgid "Login"
+msgstr "ورود"
+
+msgid "Sign up"
+msgstr "ثبت‌نام"
+
+msgid "Need an account?"
+msgstr "حساب کاربری ندارید؟"
+
+msgid "Already have an account?"
+msgstr "قبلاً ثبت‌نام کرده‌اید؟"
+
+msgid "No messages yet."
+msgstr "هنوز پیامی وجود ندارد."
+
+msgid "You haven't sent anything yet."
+msgstr "هنوز چیزی ارسال نکرده‌اید."
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "Back to inbox"
+msgstr "بازگشت به صندوق ورودی"
+
+msgid "recipient"
+msgstr "گیرنده"
+
+msgid "subject"
+msgstr "موضوع"
+
+msgid "body"
+msgstr "متن پیام"
+
+msgid "from %(sender)s · %(time)s ago"
+msgstr "از طرف %(sender)s · %(time)s پیش"
+
+msgid "to %(recipient)s · %(time)s ago"
+msgstr "به %(recipient)s · %(time)s پیش"
+
+msgid "from %(sender)s to %(recipient)s · %(time)s ago"
+msgstr "از طرف %(sender)s به %(recipient)s · %(time)s پیش"

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {{ message.subject }} {% endblock %}
+{% block card_class %}wide{% endblock %}
+{% block content %}
+<h1>{{ message.subject }}</h1>
+<div class="meta">
+    {% blocktranslate with sender=message.sender.username recipient=message.recipient.username time=message.created_at|timesince %}from {{ sender }} to {{ recipient }} · {{ time }} ago{% endblocktranslate %}
+</div>
+<p class="message-body">{{ message.body }}</p>
+<div class="actions">
+    <a href="{% url 'inbox' %}">{% translate "Back to inbox" %}</a>
+</div>
+{% endblock %}

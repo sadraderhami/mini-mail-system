@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% translate "Inbox" %} {% endblock %}
+{% block card_class %}wide{% endblock %}
+{% block content %}
+<h1>{% translate "Inbox" %}</h1>
+<div class="actions">
+    <a href="{% url 'compose' %}">{% translate "Compose" %}</a>
+    <a href="{% url 'sent' %}">{% translate "Sent" %}</a>
+</div>
+<ul class="message-list">
+    {% for message in received_messages %}
+    <li class="{% if not message.is_read %}unread{% endif %}">
+        <div class="avatar">{{ message.sender.username|first|upper }}</div>
+        <div>
+            <a href="{% url 'message_detail' message.pk %}" class="subject">{{ message.subject }}</a>
+            <div class="meta">{% blocktranslate with sender=message.sender.username time=message.created_at|timesince %}from {{ sender }} · {{ time }} ago{% endblocktranslate %}</div>
+        </div>
+    </li>
+    {% empty %}
+    <li>{% translate "No messages yet." %}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

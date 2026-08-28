@@ -1,3 +1,30 @@
+{% load i18n %}
 <nav>
     <a href="/">MiniMail</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'inbox' %}">{% translate "Inbox" %}{% if unread_count %} <span class="badge">{{ unread_count }}</span>{% endif %}</a>
+        <a href="{% url 'sent' %}">{% translate "Sent" %}</a>
+        <a href="{% url 'compose' %}">{% translate "Compose" %}</a>
+        <form method="post" action="{% url 'logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button type="submit">{% translate "Logout" %}</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">{% translate "Login" %}</a>
+        <a href="{% url 'signup' %}">{% translate "Sign up" %}</a>
+    {% endif %}
+
+    <!-- Posts to Django's built-in set_language view, which stores the
+         choice in the session/cookie and redirects back to `next`. -->
+    <form action="{% url 'set_language' %}" method="post" class="lang-form">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}">
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% get_available_languages as AVAILABLE_LANGUAGES %}
+        <select name="language" onchange="this.form.submit()">
+            {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+                <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>{{ lang_name }}</option>
+            {% endfor %}
+        </select>
+    </form>
 </nav>
